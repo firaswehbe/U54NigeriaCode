@@ -14,6 +14,7 @@ enr_age,enrollment,,calc,"Age in years at enrollment (calculated)","datediff([en
 enr_gender,enrollment,,radio,Sex,"1, Female | 2, Male",,,,,,,y,RH,,,,
 enr_phone,enrollment,,text,"Patient Phone Number",,,,,,,,,,,,,
 enr_relphone,enrollment,,text,"Relative Phone Number",,,,,,,,,,,,,
+enr_rel2patient,enrollment,,text,"Relationship to Patient",,,,,,,,,,,,,
 enr_marital,enrollment,,radio,"Marital Status","1, single | 2, married | 3, divorced | 4, widowed | 5, separated",,,,,,,,,,,,
 enr_occupation,enrollment,,radio,Occupation,"1, Civil Servant | 2, Public Servant | 3, Business | 4, Farmer | 5, Student | 6, Military / paramilitary | 7, Artisan | 8, Trader | 9, Unemployed | 10, Other",,,,,,,,,,,,
 enr_edu,enrollment,,radio,"Highest Level of Education Completed","0, No formal education | 1, Primary | 2, Secondary | 3, Tertiary",,,,,,,,,,,,
