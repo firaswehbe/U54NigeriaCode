@@ -249,7 +249,7 @@ visit_lab_cbc_y,visit,,radio,"Complete blood count (Hgb, platelets)","1, Taken |
 visit_lab_liverlabs_y,visit,,radio,"ALT, AST, Albumin, Bilirubin, Total Protein","1, Taken | 0, Not taken",,,,,,,,RH,,,,
 visit_lab_afp_y,visit,,radio,AFP,"1, Taken | 0, Not taken",,,,,,,,RH,,,,
 visit_lab_genomicspec_y,visit,,radio,"Specimens for Genomic analyses","1, Taken | 0, Not taken",,,,,,,,RH,,,,
-visit_hiv_intro,visit_hiv,,descriptive,"Please fill this form every visit <u>for HIV patients only</u>",,,,,,,,,,,,,
+visit_hiv_intro,visit_hiv,,descriptive,"Please fill this form during every visit (First baseline visit and then during every follow up visit) for Aim 3 patients only.",,,,,,,,,,,,,
 visit_hiv_livbiop_text,visit_hiv,,notes,"Liver biopsy results",,,,,,,,,RH,,,,
 visit_hiv_us,visit_hiv,,checkbox,"Liver Ultrasound Findings","0, Liver lesion | 1, Cirrhosis | 2, Steatosis | 3, Ascites | 4, Splenomegaly | 5, HCC | 6, PVT - Portal Vein Thrombosis | 99, Other please specify",,,,,,,,,,,,
 visit_hiv_us_oth,visit_hiv,,text,"Ultrasound Other",,,,,,,"[visit_hiv_us(99)] = '1'",,,,,,
@@ -286,13 +286,14 @@ visit_hcc_child_pugh,visit_hcc,"HCC Scores",text,"Child-Pugh Score
 visit_hcc_meld,visit_hcc,,text,"MELD Score
 
 <a target=""_blank"" href=""http://www.mayoclinic.org/meld/mayomodel6.html"">http://www.mayoclinic.org/meld/mayomodel6.html</a>",,"Enter as integer 0-20",integer,0,20,,,,LV,,,,
-outcome_text,outcome,,descriptive,"This form is filled only for:
-Aim 2 
+outcome_text,outcome,,descriptive,"This form is filled only for patients under the following aims, at the <u>end of the study</u>.
+Aim 2
 Aim 3",,,,,,,,,,,,,
-final_death_y,outcome,,radio,Mortality?,"1, Yes | 0, No | 2, Unknown",,,,,,,,RH,,,,
-final_withdraw_y,outcome,,radio,"Did they withdraw from the study?","1, Yes | 0, No | 2, Unknown",,,,,,,,RH,,,,
-final_completed_d,outcome,,text,"Date this form was completed",,,date_ymd,,,,,,,,,,
-final_fu_d,outcome,,text,"Date of the last time the patient was followed up",,,date_ymd,2018-01-01,,,"[final_death_y] = '0' or [final_death_y] = '2'",,RH,,,,
+final_completed_d,outcome,,text,"Please enter the date this form was completed",,,date_ymd,,,,,,,,,,
+final_withdraw_y,outcome,,radio,"Did the patient withdraw their consent from the study?","1, Yes | 0, No",,,,,,,,RH,,,,
+final_withdraw_d,outcome,,text,"If they have withdrawn their consent, what date did they withdraw their consent",,,date_ymd,,,,"[final_withdraw_y] = '1'",,,,,,
+final_death_y,outcome,,radio,"Has the patient died?","1, Yes | 0, No | 2, Unknown",,,,,,"[final_withdraw_y] = '0'",,RH,,,,
+final_fu_d,outcome,,text,"Date of the last time the patient was known alive",,"For example contact by phone or clinic visit date",date_ymd,2018-01-01,,,"[final_death_y] = '0' or [final_death_y] = '2'",,RH,,,,
 final_death_d,outcome,,text,"Date of death",,,date_ymd,2018-01-01,,,"[final_death_y] = '1'",,RH,,,,
 final_death_causes,outcome,,notes,"Causes of Death",,,,,,,"[final_death_y] = '1'",,RH,,,,
 final_liverdeath_y,outcome,,radio,"Liver related death?","1, Yes | 0, No | 2, Unknown",,,,,,"[final_death_y] = '1'",,RH,,,,
