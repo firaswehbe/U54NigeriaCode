@@ -6,3 +6,11 @@
 *.Rproj
 input/*.csv
 input/*.dta
+
+output/*.png
+output/*.html
+output/*.csv
+output/*.dta
+
+config/*.token
+
