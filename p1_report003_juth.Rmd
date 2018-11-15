@@ -1,0 +1,52 @@
+---
+title: "Report003_JUTH"
+#author: "Neelima"
+author: "`r Sys.getenv('USER')`"
+date: "`r strftime(Sys.time(),format='%F %T %Z')`"
+output: 
+  html_document: 
+    theme: cosmo
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# U54 project 1 - JUTH
+
+## Recruitment Site
+
+```{r affiliatetable}
+mytable <- as.matrix(table(mydata$enr_siteasfactor,mydata$enr_genderasfactor))
+mytable2 <- as.matrix(table(mydata_arm2$enr_siteasfactor,mydata_arm2$enr_genderasfactor))
+mytable3 <-rbind(mytable,mytable2)
+z <- c( 'JUTH', 'JUTH.1')
+
+mytable3 <- mytable3[row.names(mytable3) %in% z, ]
+rownames(mytable3) <- c("Juth_arm_1", "Juth_arm_2")
+mytable4 <- cbind(
+  mytable3,
+rowSums(mytable3)
+)
+colnames(mytable4) <- c("Female", "Male", "Total")
+mytable4 <- rbind(mytable4,colSums(mytable4))
+knitr::kable(mytable4,caption = 'Sites by Enrolled Patients')
+```
+
+
+## Enrollment Status
+
+![Participants enrolled since registry launch - Arm 1](output/fig001_juth_arm1.png)
+
+<p style="page-break-before: always" />
+
+![Participants enrolled since registry launch - Arm 2](output/fig001_juth_arm2.png)
+
+
+<p style="page-break-before: always" />
+
+
+
+
+  
