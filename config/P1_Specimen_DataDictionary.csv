@@ -1,6 +1,8 @@
 "Variable / Field Name","Form Name","Section Header","Field Type","Field Label","Choices, Calculations, OR Slider Labels","Field Note","Text Validation Type OR Show Slider Number","Text Validation Min","Text Validation Max",Identifier?,"Branching Logic (Show field only if...)","Required Field?","Custom Alignment","Question Number (surveys only)","Matrix Group Name","Matrix Ranking?","Field Annotation"
 record_id,patient_information,,text,"Unique Subject Code (LHCC### or JHCC###)",,"JHCC 00X or LHCC 00X ",,,,,,,,,,,
-coll_site,patient_information,,radio,"Site of Sample Collection","1, JOS | 2, LAGOS",,,,,,,y,,,,,
+subject_id,patient_information,,text,"Subject Code",,,,,,,,,,,,,
+coll_site,patient_information,,radio,"Site of Sample Collection","1, JUTH | 2, LUTH",,,,,,,y,,,,,
+enr_visit_type,patient_information,,radio,"Type of Visit","1, Baseline | 2, Aim_2 - 6 Month Visit | 3, Aim_2 - 12 Month Visit | 4, Aim_3 - 1st Annual Visit | 5, Aim_3 - 2nd Annual Visit | 6, Aim_3 - 3rd Annual Visit",,,,,,,y,,,,,
 enr_hospital_id,patient_information,,text,"Hospital ID",,,,,,,,y,,,,,
 enr_pepid,patient_information,,text,PEPID,,,,,,,,,,,,,
 enr_gender,patient_information,,radio,Sex,"1, Female | 2, Male",,,,,,,,,,,,
