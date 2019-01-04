@@ -1,0 +1,8 @@
+event_name,arm_num,unique_event_name,custom_event_label
+Enrollment,1,enrollment_arm_1,
+Visit,1,visit_arm_1,
+"Study End",1,study_end_arm_1,
+Enrollment,2,enrollment_arm_2,
+Visit,2,visit_arm_2,
+"ICC Diagnosis",2,icc_diagnosis_arm_2,
+"Study End",2,study_end_arm_2,
