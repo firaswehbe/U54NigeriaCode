@@ -1,12 +1,12 @@
 "Variable / Field Name","Form Name","Section Header","Field Type","Field Label","Choices, Calculations, OR Slider Labels","Field Note","Text Validation Type OR Show Slider Number","Text Validation Min","Text Validation Max",Identifier?,"Branching Logic (Show field only if...)","Required Field?","Custom Alignment","Question Number (surveys only)","Matrix Group Name","Matrix Ranking?","Field Annotation"
-record_id,patient_information,,text,"Unique Subject Code (LHCC### or JHCC###)",,"JHCC 00X or LHCC 00X ",,,,,,,,,,,
+record_id,patient_information,,text,"Unique Visit Subject Code (LHCC### or JHCC###)",,"JHCC 00X or LHCC 00X ",,,,,,,,,,,
 subject_id,patient_information,,text,"Subject Code",,,,,,,,,,,,,
 coll_site,patient_information,,radio,"Site of Sample Collection","1, JUTH | 2, LUTH",,,,,,,y,,,,,
 enr_visit_type,patient_information,,radio,"Type of Visit","1, Baseline | 2, Aim_2 - 6 Month Visit | 3, Aim_2 - 12 Month Visit | 4, Aim_3 - 1st Annual Visit | 5, Aim_3 - 2nd Annual Visit | 6, Aim_3 - 3rd Annual Visit",,,,,,,y,,,,,
 enr_hospital_id,patient_information,,text,"Hospital ID",,,,,,,,y,,,,,
 enr_pepid,patient_information,,text,PEPID,,,,,,,,,,,,,
 enr_gender,patient_information,,radio,Sex,"1, Female | 2, Male",,,,,,,,,,,,
-irb_number,patient_information,,text,"The IRB number for this project ",,,,,,,,,,,,,
+irb_number,patient_information,,text,"The IRB number for this project",,,,,,,,,,,,,
 enr_dob_d,patient_information,,text,"Date of Birth",,"If exact DOB is unknown, just enter the year and January 2st. (yyyy-mm-dd)",date_ymd,,,,,,,,,,
 age,patient_information,,calc,"Age at the time of sample collection","rounddown(datediff([enr_dob_d],[coll_date],""y""),0)","This field is calculated no need to enter",,,,,,,,,,,
 vol_edta_ccf,visit_sample_collection,,text,"Volume of Blood Collected - EDTA (CCF DNA)",,ml,number,,30,,,,,,,,"@DEFAULT ='0'"
@@ -166,16 +166,16 @@ fzr_num_pl_aliq9,storage_sample_type_and_aliquots,,dropdown,"Freezer Number","1,
 box_pl_aliq9,storage_sample_type_and_aliquots,,text,"Location - Box",,,,,,,"[sample_type(2)] = '1' and [number_cryovials_pl] > 8 and [pl_aliq_9]<>""""",,,,,,
 row_pl_aliq9,storage_sample_type_and_aliquots,,text,"Location - Row",,,,,,,"[sample_type(2)] = '1' and [number_cryovials_pl] > 8 and [pl_aliq_9]<>""""",,,,,,
 column_pl_aliq9,storage_sample_type_and_aliquots,,text,"Location - Column",,,,,,,"[sample_type(2)] = '1' and [number_cryovials_pl] > 8 and [pl_aliq_9]<>""""",,,,,,
-pl_aliq_10,storage_sample_type_and_aliquots,"Blood Plasma - Aliquot 10",text,"Plasma Aliquot ID 10",,,,,,,"[sample_type(2)] = '1' and [number_cryovials_pl] > 7",,,,,,
-process_pl_aliq_10,storage_sample_type_and_aliquots,,yesno,"Is the plasma from this aliquot used in DNA extraction?",,,,,,,"[sample_type(2)] = '1' and [number_cryovials_pl] > 7",,RH,,,,
-vol_pl_aliq_10,storage_sample_type_and_aliquots,,text,"Volume (in ml)",,,number,,1.5,,"[sample_type(2)] = '1' and [number_cryovials_pl] > 7 and [process_pl_aliq_10] = '0'",,,,,,
+pl_aliq_10,storage_sample_type_and_aliquots,"Blood Plasma - Aliquot 10",text,"Plasma Aliquot ID 10",,,,,,,"[sample_type(2)] = '1' and [number_cryovials_pl] > 9",,,,,,
+process_pl_aliq_10,storage_sample_type_and_aliquots,,yesno,"Is the plasma from this aliquot used in DNA extraction?",,,,,,,"[sample_type(2)] = '1' and [number_cryovials_pl] > 9",,RH,,,,
+vol_pl_aliq_10,storage_sample_type_and_aliquots,,text,"Volume (in ml)",,,number,,1.5,,"[sample_type(2)] = '1' and [number_cryovials_pl] > 9 and [process_pl_aliq_10] = '0'",,,,,,
 vol_pl_aliq_10_initial,storage_sample_type_and_aliquots,,text,"Initial Volume (in ml)",,,,,,,"[sample_type(2)] = '1' and [process_pl_aliq_10] = '1'",,,,,,@Hidden
-rem_vol_pl_aliq_10,storage_sample_type_and_aliquots,,text,"Remaining Volume(in ml)",,,,,,,"[sample_type(2)] = '1' and [number_cryovials_pl] > 7 and [process_pl_aliq_10] = '1'",,,,,,
-fzr_loc_pl_aliq10,storage_sample_type_and_aliquots,,dropdown,"Location - Freezer","1, APIN Lab(JUTH) | 2, Blood Bank(New JUTH) | 3, New Genomics/PG Lab.CHS(JUTH) | 4, Molecular Biology Laboratory(LUTH) | 5, Central Research laboratory (APIN laboratory, College of Medicine - LUTH)",,,,,,"[sample_type(2)] = '1' and [number_cryovials_pl] > 7 and [pl_aliq_10]<>""""",,,,,,
-fzr_num_pl_aliq10,storage_sample_type_and_aliquots,,dropdown,"Freezer Number","1, JUTH - 1 | 2, JUTH - 2 | 3, JUTH - 11 | 4, LUTH - 1 | 5, LUTH - 2",,,,,,"[sample_type(2)] = '1' and [number_cryovials_pl] > 7 and [pl_aliq_10]<>""""",,,,,,
-box_pl_aliq10,storage_sample_type_and_aliquots,,text,"Location - Box",,,,,,,"[sample_type(2)] = '1' and [number_cryovials_pl] > 7 and [pl_aliq_10]<>""""",,,,,,
-row_pl_aliq10,storage_sample_type_and_aliquots,,text,"Location - Row",,,,,,,"[sample_type(2)] = '1' and [number_cryovials_pl] > 7 and [pl_aliq_10]<>""""",,,,,,
-column_pl_aliq10,storage_sample_type_and_aliquots,,text,"Location - Column",,,,,,,"[sample_type(2)] = '1' and [number_cryovials_pl] > 7 and [pl_aliq_10]<>""""",,,,,,
+rem_vol_pl_aliq_10,storage_sample_type_and_aliquots,,text,"Remaining Volume(in ml)",,,,,,,"[sample_type(2)] = '1' and [number_cryovials_pl] > 9 and [process_pl_aliq_10] = '1'",,,,,,
+fzr_loc_pl_aliq10,storage_sample_type_and_aliquots,,dropdown,"Location - Freezer","1, APIN Lab(JUTH) | 2, Blood Bank(New JUTH) | 3, New Genomics/PG Lab.CHS(JUTH) | 4, Molecular Biology Laboratory(LUTH) | 5, Central Research laboratory (APIN laboratory, College of Medicine - LUTH)",,,,,,"[sample_type(2)] = '1' and [number_cryovials_pl] > 9 and [pl_aliq_10]<>""""",,,,,,
+fzr_num_pl_aliq10,storage_sample_type_and_aliquots,,dropdown,"Freezer Number","1, JUTH - 1 | 2, JUTH - 2 | 3, JUTH - 11 | 4, LUTH - 1 | 5, LUTH - 2",,,,,,"[sample_type(2)] = '1' and [number_cryovials_pl] > 9 and [pl_aliq_10]<>""""",,,,,,
+box_pl_aliq10,storage_sample_type_and_aliquots,,text,"Location - Box",,,,,,,"[sample_type(2)] = '1' and [number_cryovials_pl] > 9 and [pl_aliq_10]<>""""",,,,,,
+row_pl_aliq10,storage_sample_type_and_aliquots,,text,"Location - Row",,,,,,,"[sample_type(2)] = '1' and [number_cryovials_pl] > 9 and [pl_aliq_10]<>""""",,,,,,
+column_pl_aliq10,storage_sample_type_and_aliquots,,text,"Location - Column",,,,,,,"[sample_type(2)] = '1' and [number_cryovials_pl] > 9 and [pl_aliq_10]<>""""",,,,,,
 tot_vol_pl_aliq_bl,storage_sample_type_and_aliquots,"Blood Plasma - Final Volume after processing",calc,"Total Volume of Blood Plasma aliquots(Baseline)","rounddown(sum(if ([baseline_arm_1][process_pl_aliq_1]='0', [baseline_arm_1][vol_pl_aliq_1],[baseline_arm_1][rem_vol_pl_aliq_1]),if ([baseline_arm_1][process_pl_aliq_2]='0', [baseline_arm_1][vol_pl_aliq_2],[baseline_arm_1][rem_vol_pl_aliq_2]),if ([baseline_arm_1][process_pl_aliq_3]='0', [baseline_arm_1][vol_pl_aliq_3],[baseline_arm_1][rem_vol_pl_aliq_3]),if ([baseline_arm_1][process_pl_aliq_4]='0', [baseline_arm_1][vol_pl_aliq_4],[baseline_arm_1][rem_vol_pl_aliq_4]),if ([baseline_arm_1][process_pl_aliq_5]='0', [baseline_arm_1][vol_pl_aliq_5],[baseline_arm_1][rem_vol_pl_aliq_5]),if ([baseline_arm_1][process_pl_aliq_6]='0', [baseline_arm_1][vol_pl_aliq_6],[baseline_arm_1][rem_vol_pl_aliq_6]),if ([baseline_arm_1][process_pl_aliq_7]='0', [baseline_arm_1][vol_pl_aliq_7],[baseline_arm_1][rem_vol_pl_aliq_7]),if ([baseline_arm_1][process_pl_aliq_8]='0', [baseline_arm_1][vol_pl_aliq_8],[baseline_arm_1][rem_vol_pl_aliq_8]),if ([baseline_arm_1][process_pl_aliq_9]='0', [baseline_arm_1][vol_pl_aliq_9],[baseline_arm_1][rem_vol_pl_aliq_9]),if ([baseline_arm_1][process_pl_aliq_10]='0', [baseline_arm_1][vol_pl_aliq_10],[baseline_arm_1][rem_vol_pl_aliq_10])),2)",,,,,,"[baseline_arm_1][number_cryovials_pl] >0",,,,,,
 tot_vol_pl_aliq_v2,storage_sample_type_and_aliquots,,calc,"Total Volume of Blood Plasma aliquots(Visit 2)","rounddown(sum(if ([visit_2_arm_1][process_pl_aliq_1]='0', [visit_2_arm_1][vol_pl_aliq_1],[visit_2_arm_1][rem_vol_pl_aliq_1]),if ([visit_2_arm_1][process_pl_aliq_2]='0', [visit_2_arm_1][vol_pl_aliq_2],[visit_2_arm_1][rem_vol_pl_aliq_2]),if ([visit_2_arm_1][process_pl_aliq_3]='0', [visit_2_arm_1][vol_pl_aliq_3],[visit_2_arm_1][rem_vol_pl_aliq_3]),if ([visit_2_arm_1][process_pl_aliq_4]='0', [visit_2_arm_1][vol_pl_aliq_4],[visit_2_arm_1][rem_vol_pl_aliq_4]),if ([visit_2_arm_1][process_pl_aliq_5]='0', [visit_2_arm_1][vol_pl_aliq_5],[visit_2_arm_1][rem_vol_pl_aliq_5]),if ([visit_2_arm_1][process_pl_aliq_6]='0', [visit_2_arm_1][vol_pl_aliq_6],[visit_2_arm_1][rem_vol_pl_aliq_6]),if ([visit_2_arm_1][process_pl_aliq_7]='0', [visit_2_arm_1][vol_pl_aliq_7],[visit_2_arm_1][rem_vol_pl_aliq_7]),if ([visit_2_arm_1][process_pl_aliq_8]='0', [visit_2_arm_1][vol_pl_aliq_8],[visit_2_arm_1][rem_vol_pl_aliq_8]),if ([visit_2_arm_1][process_pl_aliq_9]='0', [visit_2_arm_1][vol_pl_aliq_9],[visit_2_arm_1][rem_vol_pl_aliq_9]),if ([visit_2_arm_1][process_pl_aliq_10]='0', [visit_2_arm_1][vol_pl_aliq_10],[visit_2_arm_1][rem_vol_pl_aliq_10])),2)",,,,,,"[visit_2_arm_1][number_cryovials_pl] >0",,,,,,
 number_cryovials_bc,storage_sample_type_and_aliquots,"Buffy Coat",text,"Number of Aliquots",,0-5,number,0,5,,"[sample_type(3)] = '1'",,,,,,
@@ -211,9 +211,9 @@ bc_aliq_5,storage_sample_type_and_aliquots,"Buffy Coat - Aliquot 5",text,"Buffy 
 vol_bc_aliq_5,storage_sample_type_and_aliquots,,text,"Volume(in ml)",,,number,,0.5,,"[sample_type(3)] = '1' and [number_cryovials_bc] > 4 and [bc_aliq_5]<>""""",,,,,,
 fzr_loc_bc_aliq5,storage_sample_type_and_aliquots,,dropdown,"Location - Freezer","1, APIN Lab(JUTH) | 2, Blood Bank(New JUTH) | 3, New Genomics/PG Lab.CHS(JUTH) | 4, Molecular Biology Laboratory(LUTH) | 5, Central Research laboratory (APIN laboratory, College of Medicine - LUTH)",,,,,,"[sample_type(3)] = '1' and [number_cryovials_bc] > 4 and [bc_aliq_5]<>""""",,,,,,
 fzr_num_bc_aliq5,storage_sample_type_and_aliquots,,dropdown,"Freezer Number","1, JUTH - 1 | 2, JUTH - 2 | 3, JUTH - 11 | 4, LUTH - 1 | 5, LUTH - 2",,,,,,"[sample_type(3)] = '1' and [bc_aliq_5] <> '' and [number_cryovials_bc] > 4",,,,,,
-box_bc_aliq5,storage_sample_type_and_aliquots,,text,"Location - Box",,,,,,,"[sample_type(3)] = '1' and [bc_aliq_5] <> '' and [number_cryovials_pl] > 4",,,,,,
-row_bc_aliq5,storage_sample_type_and_aliquots,,text,"Location - Row",,,,,,,"[sample_type(3)] = '1' and [bc_aliq_5] <> '' and [number_cryovials_pl] > 4",,,,,,
-column_bc_aliq5,storage_sample_type_and_aliquots,,text,"Location - Column",,,,,,,"[sample_type(3)] = '1' and [bc_aliq_5] <> '' and [number_cryovials_pl] > 4",,,,,,
+box_bc_aliq5,storage_sample_type_and_aliquots,,text,"Location - Box",,,,,,,"[sample_type(3)] = '1' and [bc_aliq_5] <> '' and [number_cryovials_bc] > 4",,,,,,
+row_bc_aliq5,storage_sample_type_and_aliquots,,text,"Location - Row",,,,,,,"[sample_type(3)] = '1' and [bc_aliq_5] <> '' and [number_cryovials_bc] > 4",,,,,,
+column_bc_aliq5,storage_sample_type_and_aliquots,,text,"Location - Column",,,,,,,"[sample_type(3)] = '1' and [bc_aliq_5] <> '' and [number_cryovials_bc] > 4",,,,,,
 tot_vol_bc_aliq_bl,storage_sample_type_and_aliquots,"Buffy Coat - Final Volume after processing",calc,"Total Volume of Buffy Coat aliquots(Baseline)","rounddown(sum([baseline_arm_1][vol_bc_aliq_1],[baseline_arm_1][vol_bc_aliq_2],[baseline_arm_1][vol_bc_aliq_3],[baseline_arm_1][vol_bc_aliq_4],[baseline_arm_1][vol_bc_aliq_5]),2)",,,,,,"[baseline_arm_1][number_cryovials_bc] >0",,,,,,
 tot_vol_bc_aliq_v2,storage_sample_type_and_aliquots,,calc,"Total Volume of Buffy Coat aliquots(Visit 2)","rounddown(sum([visit_2_arm_1][vol_bc_aliq_1],[visit_2_arm_1][vol_bc_aliq_2],[visit_2_arm_1][vol_bc_aliq_3],[visit_2_arm_1][vol_bc_aliq_4],[visit_2_arm_1][vol_bc_aliq_5]),2)",,,,,,"[visit_2_arm_1][number_cryovials_bc] >0",,,,,,
 number_cryovials_bs,storage_sample_type_and_aliquots,"Blood Serum",text,"Number of Aliquots",,0-5,number,0,5,,"[sample_type(4)] = '1'",,,,,,
@@ -338,6 +338,7 @@ row_pbmc_aliq4,storage_sample_type_and_aliquots,,text,"Location - Row",,,,,,,"[s
 column_pbmc_aliq4,storage_sample_type_and_aliquots,,text,"Location - Column",,,,,,,"[sample_type(6)] = '1' and [number_cryovials_pbmc] > 3 and [pbmc_aliq_4]<>""""",,,,,,
 tot_vol_pbmc_aliq_bl,storage_sample_type_and_aliquots,"PBMC - final Volume after processing",calc,"Total Volume of PBMC aliquots(Baseline)","rounddown(sum([baseline_arm_1][vol_pbmc_aliq_1],[baseline_arm_1][vol_pbmc_aliq_2],[baseline_arm_1][vol_pbmc_aliq_3],[baseline_arm_1][vol_pbmc_aliq_4]),2)",,,,,,"[baseline_arm_1][number_cryovials_pbmc] >0",,,,,,
 tot_vol_pbmc_aliq_v2,storage_sample_type_and_aliquots,,calc,"Total Volume of PBMC aliquots (Visit 2)","rounddown(sum([visit_2_arm_1][vol_pbmc_aliq_1],[visit_2_arm_1][vol_pbmc_aliq_2],[visit_2_arm_1][vol_pbmc_aliq_3],[visit_2_arm_1][vol_pbmc_aliq_4]),2)",,,,,,"[visit_2_arm_1][number_cryovials_dna] >0",,,,,,
+misc_notes_process_storage,storage_sample_type_and_aliquots,Comments/Notes,notes,"Processing and Storage -  Notes",,,,,,,,,,,,,
 wb_vol_vis_1,sample_collection_snapshot,"Total Volume Collected from the Patient",calc,"Volume of Whole Blood - Visit 1",[baseline_arm_1][vol_sample],ml,,,,,,,,,,,
 wb_vol_vis_2,sample_collection_snapshot,,calc,"Volume of Whole Blood - Visit 2",[visit_2_arm_1][vol_sample],ml,,,,,,,,,,,
 wb_vol_total,sample_collection_snapshot,,calc,"Total Volume of Whole Blood collected from the Patient","sum([wb_vol_vis_1],[wb_vol_vis_2])",ml,,,,,,,,,,,
@@ -389,7 +390,7 @@ if([visit_2_arm_1][vol_dna_aliq_3]>0,1,0),
 if([visit_2_arm_1][vol_dna_aliq_4]>0,1,0),
 if([visit_2_arm_1][vol_dna_aliq_5]>0,1,0))",,,,,,,,,,,,
 pbmc_proc_rem,sample_collection_snapshot,,calc,"Volume of PBMC (sum of aliquots from both Visits combined)","sum([baseline_arm_1][vol_pbmc_aliq_1],[baseline_arm_1][vol_pbmc_aliq_2],[baseline_arm_1][vol_pbmc_aliq_3],[baseline_arm_1][vol_pbmc_aliq_4],[visit_2_arm_1][vol_pbmc_aliq_1],[visit_2_arm_1][vol_pbmc_aliq_2],[visit_2_arm_1][vol_pbmc_aliq_3],[visit_2_arm_1][vol_pbmc_aliq_4])",ml,,,,,,,,,,,"sum([baseline_arm_1][vol_pbmc_aliq_1],[baseline_arm_1][vol_pbmc_aliq_2],[baseline_arm_1][vol_pbmc_aliq_3],[baseline_arm_1][vol_pbmc_aliq_4],[baseline_arm_1][vol_pbmc_aliq_5],[visit_2_arm_1][vol_pbmc_aliq_1],[visit_2_arm_1][vol_pbmc_aliq_2],[visit_2_arm_1][vol_pbmc_aliq_3],[visit_2_arm_1][vol_pbmc_aliq_4],[visit_2_arm_1][vol_pbmc_aliq_5])"
-pbmc_proc_rem_tot_vial,sample_collection_snapshot,,calc,"Total number of PBMC Vials","sum(if([baseline_arm_1][vol_pbmc_aliq_1]>0,1,0), if([baseline_arm_1][vol_pbmc_aliq_2]>0,1,0), if([baseline_arm_1][vol_pbmc_aliq_3]>0,1,0), if([baseline_arm_1][vol_pbmc_aliq_4]>0,1,0),  if([visit_2_arm_1][vol_pbmc_aliq_1]>0,1,0), if([visit_2_arm_1][vol_pbmc_aliq_2]>0,1,0), if([visit_2_arm_1][vol_pbmc_aliq_3]>0,1,0), if([visit_2_arm_1][vol_pbmc_aliq_4]>0,1,0))",,,,,,,,,,,,"sum([baseline_arm_1][number_cryovials_pbmc],[visit_2_arm_1][number_cryovials_pbmc])"
+pbmc_proc_rem_tot_vial,sample_collection_snapshot,,calc,"Total number of PBMC Vials","sum(if([baseline_arm_1][vol_pbmc_aliq_1]>0,1,0), if([baseline_arm_1][vol_pbmc_aliq_2]>0,1,0), if([baseline_arm_1][vol_pbmc_aliq_3]>0,1,0), if([baseline_arm_1][vol_pbmc_aliq_4]>0,1,0),  if([visit_2_arm_1][vol_pbmc_aliq_1]>0,1,0), if([visit_2_arm_1][vol_pbmc_aliq_2]>0,1,0), if([visit_2_arm_1][vol_pbmc_aliq_3]>0,1,0), if([visit_2_arm_1][vol_pbmc_aliq_4]>0,1,0))",,,,,,,,,,,,
 ship_destination,shipping,"Shipping & Labelling",checkbox,"Shipping Destination","1, NU | 2, Mayo clinic",,,,,,,,,,,,
 ship_personnel,shipping,,dropdown,"Shipping Personnel","1, Alani Akanmu | 2, Fatima Onawoga | 3, Godwin | 4, Jonathan | 5, Other",,,,,,,,,,,,
 ship_personnel_oth,shipping,,text,"If Other, Please enter the name",,,,,,,"[ship_personnel] = '5'",,,,,,
@@ -483,6 +484,7 @@ total_ship_bc,shipping,,calc,"Total Buffy Coat Shipped(to both NU and Mayo)","su
 total_ship_bs,shipping,,calc,"Total Blood Serum Shipped(to both NU and Mayo)","sum((if([bs_sample_volume_nu] <> '' or [bs_sample_volume_mayo] <> '',(sum([bs_sample_volume_mayo],[bs_sample_volume_nu])),0)),(if([bs_sample_volume_nu_2] <> '' or [bs_sample_volume_mayo_2] <> '',(sum([bs_sample_volume_mayo_2],[bs_sample_volume_nu_2])),0)))",ml,,,,,,,,,,,
 total_ship_dna,shipping,,calc,"Total DNA Shipped(to both NU and Mayo)","sum((if([dna_sample_volume_nu] <> '' or [dna_sample_volume_mayo] <> '',(sum([dna_sample_volume_mayo],[dna_sample_volume_nu])),0)),(if([dna_sample_volume_nu_2] <> '' or [dna_sample_volume_mayo_2] <> '',(sum([dna_sample_volume_mayo_2],[dna_sample_volume_nu_2])),0)))",ml,,,,,,,,,,,
 total_ship_rna,shipping,,calc,"Total RNA Shipped(to both NU and Mayo)","sum((if([rna_sample_volume_nu] <> '' or [rna_sample_volume_mayo] <> '',(sum([rna_sample_volume_mayo],[rna_sample_volume_nu])),0)),(if([rna_sample_volume_nu_2] <> '' or [rna_sample_volume_mayo_2] <> '',(sum([rna_sample_volume_mayo_2],[rna_sample_volume_nu_2])),0)))",ml,,,,,,,,,,,@HIDDEN
+misc_notes_shipping,shipping,Comments/Notes,notes,"Shipping Notes",,,,,,,,,,,,,
 sample_type_rem,post_shipping_remaining_volume_snapshot,,checkbox,"Sample Types","1, Whole Blood | 2, Blood Plasma | 3, Buffy coat | 4, Blood Serum | 5, DNA",,,,,,,,,,,,@HIDDEN
 entry_personnel,post_shipping_remaining_volume_snapshot,,text,"Entered by",,,,,,,,,,,,,
 wb_vol_rem_aftership,post_shipping_remaining_volume_snapshot,"Whole Blood",calc,"Remaining Total Volume",([wb_proc_rem]-[total_ship_wb]),ml,,,,,,,,,,,"[sample_type_rem(1)] = '1' -branchng Logic"
@@ -683,7 +685,7 @@ fzr_num_bc_aliq5_bl_as,post_shippingstorage_aliquots_baseline_visit,,text,"Freez
 box_bc_aliq5_bl_as,post_shippingstorage_aliquots_baseline_visit,,text,"Location - Box",,,,,,,,,,,,,@DEFAULT='[baseline_arm_1][box_bc_aliq5]'
 row_bc_aliq5_bl_as,post_shippingstorage_aliquots_baseline_visit,,text,"Location - Row",,,,,,,,,,,,,@DEFAULT='[baseline_arm_1][row_bc_aliq5]'
 column_bc_aliq5_bl_as,post_shippingstorage_aliquots_baseline_visit,,text,"Location - Column",,,,,,,,,,,,,@DEFAULT='[baseline_arm_1][column_bc_aliq5]'
-tot_vol_bc_aliq_bl_as,post_shippingstorage_aliquots_baseline_visit,"Buffy Coat - Final Volume after processing",calc,"Total Volume of Buffy Coat aliquots(Baseline)","rounddown(sum([baseline_arm_1][vol_bc_aliq_1_bl_as],[baseline_arm_1][vol_bc_aliq_2_bl_as],[baseline_arm_1][vol_bc_aliq_3_bl_as],[baseline_arm_1][vol_bc_aliq_4_bl_as],[baseline_arm_1][vol_bc_aliq_5_bl_as]),2)",ml,,,,,,,,,,,
+tot_vol_bc_aliq_bl_as,post_shippingstorage_aliquots_baseline_visit,"Buffy Coat - Final Volume after processing",calc,"Total Volume of Buffy Coat aliquots(Baseline)","rounddown(sum([vol_bc_aliq_1_bl_as],[vol_bc_aliq_2_bl_as],[vol_bc_aliq_3_bl_as],[vol_bc_aliq_4_bl_as],[vol_bc_aliq_5_bl_as]),2)",ml,,,,,,,,,,,
 bs_aliq_1_bl_as,post_shippingstorage_aliquots_baseline_visit,"Baseline 
 
 Blood Serum - 
@@ -830,6 +832,7 @@ fzr_num_pbmc_aliq4_bl_as,post_shippingstorage_aliquots_baseline_visit,,text,"Fre
 box_pbmc_aliq4_bl_as,post_shippingstorage_aliquots_baseline_visit,,text,"Location - Box",,,,,,,,,,,,,@DEFAULT='[baseline_arm_1][box_pbmc_aliq4]'
 row_pbmc_aliq4_bl_as,post_shippingstorage_aliquots_baseline_visit,,text,"Location - Row",,,,,,,,,,,,,@DEFAULT='[baseline_arm_1][row_pbmc_aliq4]'
 column_pbmc_aliq4_bl_as,post_shippingstorage_aliquots_baseline_visit,,text,"Location - Column",,,,,,,,,,,,,@DEFAULT='[baseline_arm_1][column_pbmc_aliq4]'
+tot_vol_pbmc_aliq_bl_as,post_shippingstorage_aliquots_baseline_visit,"PBMC - Final Volume after processing",calc,"Total Volume of PBMC aliquots(Baseline)","rounddown(sum([vol_pbmc_aliq_1_bl_as],[vol_pbmc_aliq_2_bl_as],[vol_pbmc_aliq_3_bl_as],[vol_pbmc_aliq_4_bl_as]),2)",ml,,,,,,,,,,,
 ent_wb_d_as,post_shipping_storage_aliquots_visit_2,"If there is a second visit, Please fill out this form
 
 ",text,"Entered Date",,,date_ymd,,,,,,,,,,
@@ -980,7 +983,7 @@ box_pl_aliq10_v2_as,post_shipping_storage_aliquots_visit_2,,text,"Location - Box
 row_pl_aliq10_v2_as,post_shipping_storage_aliquots_visit_2,,text,"Location - Row",,,,,,,,,,,,,@DEFAULT='[visit_2_arm_1][row_pl_aliq10]'
 column_pl_aliq10_v2_as,post_shipping_storage_aliquots_visit_2,,text,"Location - Column",,,,,,,,,,,,,@DEFAULT='[visit_2_arm_1][column_pl_aliq10]'
 loc_pl_10_v2_as,post_shipping_storage_aliquots_visit_2,,descriptive,"Location - Freezer : [baseline_arm_1][fzr_loc_pl_aliq10]Freezer Number : [baseline_arm_1][fzr_num_pl_aliq10]Location - Box : [baseline_arm_1][box_pl_aliq10]Location - Row : [baseline_arm_1][row_loc_pl_aliq10]Location - Column : [baseline_arm_1][column_pl_aliq10]",,,,,,,,,,,,,@HIDDEN
-tot_vol_pl_aliq_v2_as,post_shipping_storage_aliquots_visit_2,,calc,"Total Volume of Blood Plasma aliquots(Visit 2)","sum([vol_pl_aliq_1_v2_as],[vol_pl_aliq_2_v2_as],[vol_pl_aliq_3_v2_as],[vol_pl_aliq_4_v2_as],[vol_pl_aliq_5_v2_as],[vol_pl_aliq_6_v2_as],[vol_pl_aliq_7_v2_as],[vol_pl_aliq_8_v2_as],[vol_pl_aliq_9_v2_as],[vol_pl_aliq_10_v2_as])",ml,,,,,,,,,,,
+tot_vol_pl_aliq_v2_as,post_shipping_storage_aliquots_visit_2,,calc,"Total Volume of Blood Plasma aliquots(Visit 2)","rounddown(sum([vol_pl_aliq_1_v2_as],[vol_pl_aliq_2_v2_as],[vol_pl_aliq_3_v2_as],[vol_pl_aliq_4_v2_as],[vol_pl_aliq_5_v2_as],[vol_pl_aliq_6_v2_as],[vol_pl_aliq_7_v2_as],[vol_pl_aliq_8_v2_as],[vol_pl_aliq_9_v2_as],[vol_pl_aliq_10_v2_as]),2)",ml,,,,,,,,,,,
 bc_aliq_1_v2_as,post_shipping_storage_aliquots_visit_2,"Visit 2 - 
 
 Buffy Coat
@@ -1030,7 +1033,7 @@ fzr_num_bc_aliq5_v2_as,post_shipping_storage_aliquots_visit_2,,text,"Freezer Num
 box_bc_aliq5_v2_as,post_shipping_storage_aliquots_visit_2,,text,"Location - Box",,,,,,,,,,,,,@DEFAULT='[visit_2_arm_1][box_bc_aliq5]'
 row_bc_aliq5_v2_as,post_shipping_storage_aliquots_visit_2,,text,"Location - Row",,,,,,,,,,,,,@DEFAULT='[visit_2_arm_1][row_bc_aliq5]'
 column_bc_aliq5_v2_as,post_shipping_storage_aliquots_visit_2,,text,"Location - Column",,,,,,,,,,,,,@DEFAULT='[visit_2_arm_1][column_bc_aliq5]'
-tot_vol_bc_aliq_v2_as,post_shipping_storage_aliquots_visit_2,,calc,"Total Volume of Buffy Coat aliquots(Visit 2)","sum([vol_bc_aliq_1_v2_as],[vol_bc_aliq_2_v2_as],[vol_bc_aliq_3_v2_as],[vol_bc_aliq_4_v2_as],[vol_bc_aliq_5_v2_as])",ml,,,,,,,,,,,
+tot_vol_bc_aliq_v2_as,post_shipping_storage_aliquots_visit_2,,calc,"Total Volume of Buffy Coat aliquots(Visit 2)","rounddown(sum([vol_bc_aliq_1_v2_as],[vol_bc_aliq_2_v2_as],[vol_bc_aliq_3_v2_as],[vol_bc_aliq_4_v2_as],[vol_bc_aliq_5_v2_as]),2)",ml,,,,,,,,,,,
 bs_aliq_1_v2_as,post_shipping_storage_aliquots_visit_2,"Visit 2
 
 Blood Serum
@@ -1080,7 +1083,7 @@ fzr_num_bs_aliq5_v2_as,post_shipping_storage_aliquots_visit_2,,text,"Freezer Num
 box_bs_aliq5_v2_as,post_shipping_storage_aliquots_visit_2,,text,"Location - Box",,,,,,,,,,,,,@DEFAULT='[visit_2_arm_1][box_bs_aliq5]'
 row_bs_aliq5_v2_as,post_shipping_storage_aliquots_visit_2,,text,"Location - Row",,,,,,,,,,,,,@DEFAULT='[visit_2_arm_1][row_bs_aliq5]'
 column_bs_aliq5_v2_as,post_shipping_storage_aliquots_visit_2,,text,"Location - Column",,,,,,,,,,,,,@DEFAULT='[visit_2_arm_1][column_bs_aliq5]'
-tot_vol_bs_aliq_v2_as,post_shipping_storage_aliquots_visit_2,,calc,"Total Volume of Blood Serum aliquots(Visit 2)","sum([vol_bs_aliq_1_v2_as],[vol_bs_aliq_2_v2_as],[vol_bs_aliq_3_v2_as],[vol_bs_aliq_4_v2_as],[vol_bs_aliq_5_v2_as])",ml,,,,,,,,,,,
+tot_vol_bs_aliq_v2_as,post_shipping_storage_aliquots_visit_2,,calc,"Total Volume of Blood Serum aliquots(Visit 2)","rounddown(sum([vol_bs_aliq_1_v2_as],[vol_bs_aliq_2_v2_as],[vol_bs_aliq_3_v2_as],[vol_bs_aliq_4_v2_as],[vol_bs_aliq_5_v2_as]),2)",ml,,,,,,,,,,,
 dna_aliq_1_v2_as,post_shipping_storage_aliquots_visit_2,"Visit 2
 
 DNA
@@ -1177,3 +1180,4 @@ fzr_num_pbmc_aliq4_v2_as,post_shipping_storage_aliquots_visit_2,,text,"Freezer N
 box_pbmc_aliq4_v2_as,post_shipping_storage_aliquots_visit_2,,text,"Location - Box",,,,,,,,,,,,,@DEFAULT='[visit_2_arm_1][box_pbmc_aliq4]'
 row_pbmc_aliq4_v2_as,post_shipping_storage_aliquots_visit_2,,text,"Location - Row",,,,,,,,,,,,,@DEFAULT='[visit_2_arm_1][row_pbmc_aliq4]'
 column_pbmc_aliq4_v2_as,post_shipping_storage_aliquots_visit_2,,text,"Location - Column",,,,,,,,,,,,,@DEFAULT='[visit_2_arm_1][column_pbmc_aliq4]'
+tot_vol_pbmc_aliq_v2_as,post_shipping_storage_aliquots_visit_2,,calc,"Total Volume of PBMC aliquots (Visit 2)","rounddown(sum([vol_pbmc_aliq_1_v2_as],[vol_pbmc_aliq_2_v2_as],[vol_pbmc_aliq_3_v2_as],[vol_pbmc_aliq_4_v2_as]),2)",ml,,,,,,,,,,,
