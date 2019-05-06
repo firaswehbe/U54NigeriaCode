@@ -1,5 +1,4 @@
 event_name,arm_num,unique_event_name,custom_event_label
 Baseline,1,baseline_arm_1,
-"Visit 2",1,visit_2_arm_1,
 Shipping,1,shipping_arm_1,
 "Storage - Post-Shipping",1,storage__postshipp_arm_1,
