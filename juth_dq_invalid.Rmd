@@ -1,0 +1,37 @@
+---
+title: "Invalid Data -Project 1 - Juth -Version 2"
+author: "Neelima"
+date: "`r strftime(Sys.time(),format='%F %T %Z')`"
+output: 
+  html_document: 
+    toc: true
+    theme: united
+    
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+```{r}
+ct <- length(unique(juth_data$record_id))
+
+```
+**There are `r ct` records in Juth - Project 1 Clinical REDCAP database**
+
+***
+
+##**Juth Project 1**
+###**Missing/Discrepancies across all forms for the records in both arms**
+**The fields displayed are invalid values**
+
+
+```{r bmi invalid values}
+visit_bmi %>%
+datatable( rownames = FALSE,class = 'cell-border stripe',
+   extensions = c('Buttons','FixedHeader','FixedColumns'),
+  options = list(columnDefs = list(list(className = 'dt-right')),
+    pageLength = 300, PageWidth =2000, fixedHeader = TRUE, dom = 'Bfrtip', buttons = c( 'colvis', 'print', 'pdf','copy','excel'), scrollY = TRUE, scrollX =TRUE,  fixedColumns = list(leftColumns = 1, rightColumns = 1)
+   ) )
+```
+
+
