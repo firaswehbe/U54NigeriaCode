@@ -1,0 +1,109 @@
+---
+title: "Missing Data -Project 1 - Juth -Version 2"
+author: "Neelima"
+date: "`r strftime(Sys.time(),format='%F %T %Z')`"
+output: 
+  html_document: 
+    toc: true
+    theme: united
+    
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+```{r}
+ct <- length(unique(juth_data$record_id))
+
+```
+**There are `r ct` records in juth - Project 1 Clinical REDCAP database**
+
+***
+
+##**JUTH Project 1**
+###**Missing/Discrepancies across all forms for the records in both arms**
+**The fields that belong to "enrollment_arm_1 :: HIV_diagnosis" are not missing values but invalid values for the respective records. Please refer to notes in the appendix at the bottom of this page on how to interpret the invalid values in HIV Diagnosis form**
+
+
+```{r all forms}
+wide_agg_missing %>%
+datatable( rownames = FALSE,class = 'cell-border stripe',
+   extensions = c('Buttons','FixedHeader','FixedColumns'),
+  options = list(columnDefs = list(list(className = 'dt-right')),
+    pageLength = 300, PageWidth =2000, fixedHeader = TRUE, dom = 'Bfrtip', buttons = c( 'colvis', 'print', 'pdf','copy','excel'), scrollY = TRUE, scrollX =TRUE,  fixedColumns = list(leftColumns = 1, rightColumns = 1)
+   ) )%>% formatStyle("Form_fields","white-space"="wrap")
+```
+
+
+##**Appendix: 
+
+#####**Enrollment Form**
+
+1. Missing fields in Enrollment form - Other ID, site, enrolled date, date of birth, gender, marital status, occupation, education, Is Patient HIV positive, Is Patient HCC positive, all the fields in sections - Risk factors for HCC, Risk Factors for HIV, HCV, and HBV Acquisition, Hepatitis Immunizations and Co-Morbid Medical Conditions, Current alcohol use is 'Yes' and Alcohol duration in years is null
+
+#####**HIV diagnosis Form**
+
+1. AIDS diagnosis  is Yes and prior OI  is No and/or OI defining illness is either No or Unknown
+
+Note: If Prior OI is Yes or 1 or more OI is Yes then AIDS diagnosis should be Yes. We do not need to pull this but perhaps can change the field so that you cant have no checked for AIDS diagnosis if prior OI yes or an OI checked off
+ 
+#####**HCC diagnosis Form** is Yes
+
+1. Arterial enhancement is No
+2. BCLC is Missing
+3. Cirrhosis
+4. Steatosis
+5. Ascites
+6. Splenomegaly
+7. Varicies
+8. Portal vein invasion
+9. Portal Vein thrombosis
+ 
+#####**Visit Form**
+
+1. ECOG performance status is Missing
+2. HIV treatment yes, but missing start date and recent regimen
+3. HBV treatment yes, but missing start date and regimen
+4. missing fibroscan score
+5. missing other imaging results (any text)
+6. Height and Weight missiing
+7. HIV positive and HCC missing any value(i.e., missing both Yes or No)
+8. Jaundice and Encephalopathy missing any value(i.e., missing Yes or No or Unknown)
+
+#####**Laboratory Testing Results Form**
+1. (lab results) # with CD4 and HIV RNA but HIV negative
+2. HBsAg
+3. HBeAg (if HBsAg +)
+4. Anti-HBe (if HBsAg +)
+5. HBV DNA (if HBsAg +)
+6. Anti-HDV (if HBsAg +)
+7. Anti-HCV
+8. CD4 + Cell Count (if HIV +)
+9. HIV RNA (if HIV +)
+10. INR
+11. PT
+12. Creatinine
+13. Hemoglobin
+14. Platelets
+15. ALT
+16. AST
+17. Albumin
+18. Total Bilrubin
+19. Total Protein
+20. AFP
+ 
+#####**Visit HCC Form**
+
+1. Missing MELD score
+2. Missing CPS
+ 
+#####**Visit HIV Form**
+
+1. Missing USS findings or USS other completed
+2. CT findings. # missing any response either yes/no or unknown
+ 
+#####**Outcome Form**
+
+1. With missing death outcome  - has patient died
+2. With missing date of death if patient died is Yes
+3. With missing cause of death if patient died is Yes.
