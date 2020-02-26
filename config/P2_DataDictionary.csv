@@ -3,7 +3,7 @@ record_id,enrollment,,text,"Unique Subject Code",,"LU### or JU###",,,,,,,,,,,
 enr_hospital_id,enrollment,,text,"Hospital ID",,,,,,y,,y,,,,,
 enr_pepid,enrollment,,text,PEPID,,,,,,y,,y,,,,,
 enr_otherid,enrollment,,text,"Other ID",,,,,,y,,,,,,,
-enr_site,enrollment,,radio,Site,"1, JUTH | 2, LUTH",,,,,,,y,RH,,,,@DEFAULT='1'
+enr_site,enrollment,,radio,Site,"1, JUTH | 2, LUTH",,,,,,,y,RH,,,," @DEFAULT='1'"
 enr_enroll_d,enrollment,,text,"Date of Enrollment",,,date_ymd,2018-01-01,,,,y,,,,,
 enr_text_hiv,enrollment,,descriptive,"If the patient has an HIV diagnosis, please make sure that the HIV diagnosis questions are filled (once and updated as needed)",,,,,,,,,,,,,
 enr_icc_diag,enrollment,,radio,"Have you ever been diagnosed with Cervical Cancer?","1, Yes | 0, No",,,,,,,y,RH,,,,
@@ -111,7 +111,7 @@ warning,icc_diagnosis,,descriptive,"You entered Tumor size >10 centimeters, Are 
 2, Adenocarcinoma
 99, Other",,,,,,"[icc_diag_tumor_size] > 10",,,,,,
 icc_diag_histopath_typ,icc_diagnosis,,radio,"Histopathological type of ICC","1, Squamous Cell Carcinoma | 2, Adenocarcinoma | 99, Other",,,,,,,,,,,,
-icc_diag_histopath_typ_oth,icc_diagnosis,,text,"If Other, Please specify",,,,,,,"[icc_diag_histopath_typ] = '3'",,,,,,
+icc_diag_histopath_typ_oth,icc_diagnosis,,text,"If Other, Please specify",,,,,,,"[icc_diag_histopath_typ] = '99'",,,,,,
 icc_diag_tumor_grade,icc_diagnosis,,radio,"Tumor Grade  ","1, Well-differentiated | 2, Moderately differentiated | 3, Poorly differentiated",,,,,,,,,,,,
 visit_intro_text,visit,,descriptive,"Please fill this form once at enrollment and then at every subsequent visit.
 
@@ -123,7 +123,7 @@ visit_ex_height,visit,"Vital Signs",text,Height,,"in cm",number,80,250,,,,RH,,,,
 visit_ex_weight,visit,,text,Weight,,"in kg",number,30,,,,,RH,,,,
 visit_sx_bmi,visit,,calc,BMI,roundup([visit_ex_weight]*10000/([visit_ex_height]*[visit_ex_height])),"This field is calculated no need to enter",,,,,,,RH,,,,
 visit_hiv_rx_y,visit,"HIV Treatment",radio,"HIV Treatment?","1, Yes | 0, No | 2, Unknown",,,,,,,,RH,,,,
-visit_hiv_rx_sd,visit,,text,"Start Date?",,,,,,,"[visit_hiv_rx_y] = '1'",,RH,,,,
+visit_hiv_rx_sd,visit,,text,"Start Date?",,"Please enter four digit year. If Date is provided please enter it in the comment log.",,,,,"[visit_hiv_rx_y] = '1'",,RH,,,,
 visit_hiv_rx_reg,visit,,radio,"Most recent Regimen","1, Tenofovir/lamivudine/efavirenz | 2, Tenofovir/emtricitabine/efavirenz | 99, Other",,,,,,"[visit_hiv_rx_y] = '1'",,,,,,
 visit_hiv_rx_reg_oth,visit,,text,"If  other",,,,,,,"[visit_hiv_rx_reg] = '99'",,,,,,
 visit_tmt_icc_type,visit,"ICC Treatment",radio,"Type of treatment for ICC received","1, Palliative care | 2, Extended Hysterectomy and Chemotherapy | 3, Extended Hysterectomy and Chemoradiation | 4, Chemotherapy only | 5, Chemoradiation only | 99, Other",,,,,,,,,,,,

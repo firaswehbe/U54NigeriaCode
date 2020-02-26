@@ -3,7 +3,7 @@ record_id,enrollment,,text,"Unique Subject Code",,"LU### or JU###",,,,,,,,,,,
 enr_hospital_id,enrollment,,text,"Hospital ID",,,,,,y,,y,,,,,
 enr_pepid,enrollment,,text,PEPID,,,,,,y,,y,,,,,
 enr_otherid,enrollment,,text,"Other ID",,,,,,y,,,,,,,
-enr_site,enrollment,,radio,Site,"1, JUTH | 2, LUTH",,,,,,,y,RH,,,,@DEFAULT='1'
+enr_site,enrollment,,radio,Site,"1, JUTH | 2, LUTH",,,,,,,y,RH,,,," @DEFAULT='1'"
 enr_enroll_d,enrollment,,text,"Date of Enrollment",,,date_ymd,2018-01-01,,,,y,,,,,
 enr_hiv_serology_y,enrollment,Serology,radio,"Is the patient HIV positive","1, Yes | 0, NO","This question is repeated in every visit form",,,,,,y,RH,,,,
 enr_text_hiv,enrollment,,descriptive,"If the patient has an HIV diagnosis, please make sure that the HIV diagnosis questions are filled (once and updated as needed)",,,,,,,"[enr_hiv_serology_y] = '1'",,,,,,
@@ -276,9 +276,7 @@ visit_hiv_intro,visit_hiv,,descriptive,"Please fill this form during every visit
 visit_hiv_livbiop_text,visit_hiv,,notes,"Liver biopsy results",,,,,,,,,RH,,,,
 visit_hiv_us,visit_hiv,,checkbox,"Liver Ultrasound Findings","0, Liver lesion | 1, Cirrhosis | 2, Steatosis | 3, Ascites | 4, Splenomegaly | 5, HCC | 6, PVT - Portal Vein Thrombosis | 99, Other please specify",,,,,,,,,,,,
 visit_hiv_us_oth,visit_hiv,,text,"Ultrasound Other",,,,,,,"[visit_hiv_us(99)] = '1'",,,,,,
-visit_hiv_ct_cirr_y,visit_hiv,"CT FIndings
-
-(This is done in the baseline visit only and not done in later visits. So can skip these in the later visits.)",radio,Cirrhosis?,"1, Yes | 0, No | 2, Unknown",,,,,,,,RH,,,,
+visit_hiv_ct_cirr_y,visit_hiv,"CT FIndings",radio,Cirrhosis?,"1, Yes | 0, No | 2, Unknown",,,,,,,,RH,,,,
 visit_hiv_ct_stea_y,visit_hiv,,radio,Steatosis?,"1, Yes | 0, No | 2, Unknown",,,,,,,,RH,,,,
 visit_hiv_ct_asc_y,visit_hiv,,radio,Ascites?,"1, Yes | 0, No | 2, Unknown",,,,,,,,RH,,,,
 visit_hiv_ct_spl_y,visit_hiv,,radio,Splenomegaly?,"1, Yes | 0, No | 2, Unknown",,,,,,,,RH,,,,
