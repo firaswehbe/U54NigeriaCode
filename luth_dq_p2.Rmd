@@ -1,0 +1,56 @@
+---
+title: "Missing Data - Project 2 - luth"
+author: "Neelima"
+date: "`r strftime(Sys.time(),format='%F %T %Z')`"
+output: 
+  html_document: 
+    toc: true
+    theme: united
+    
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+```{r}
+ct <- length(unique(luth_data$record_id))
+
+```
+**There are `r ct` records in luth - Project 2 Clinical REDCAP database**
+
+***
+
+##**luth Project 2**
+###**Missing/Discrepancies across all forms for the records in both arms**
+**The fields that belong to "Outcome form" do not have redcap_event as they do not have entry for  the field "Please enter the date this form was completed".**
+
+
+```{r all forms}
+wide_agg_missing %>%
+datatable( rownames = FALSE,class = 'cell-border stripe',
+   extensions = c('Buttons','FixedHeader','FixedColumns'),
+  options = list(columnDefs = list(list(className = 'dt-right')),
+    pageLength = 500, PageWidth =2000, fixedHeader = TRUE, dom = 'Bfrtip', buttons = c( 'colvis', 'print', 'pdf','copy','excel'), scrollY = TRUE, scrollX =TRUE,  fixedColumns = list(leftColumns = 1, rightColumns = 1)
+   ),escape = FALSE )%>% formatStyle("Fields","white-space"="nowrap")#%>% formatStyle("Form_fields","white-space"="wrap")
+```
+
+
+##**Appendix: 
+
+#####**Enrollment Form**
+
+
+#####**HIV diagnosis Form**
+
+1. AIDS diagnosis  is Yes and prior OI  is No and/or OI defining illness is either No or Unknown
+
+Note: If Prior OI is Yes or 1 or more OI is Yes then AIDS diagnosis should be Yes. We do not need to pull this but perhaps can change the field so that you cant have no checked for AIDS diagnosis if prior OI yes or an OI checked off
+ 
+
+ 
+#####**Visit Form**
+
+
+ 
+#####**Outcome Form**
+

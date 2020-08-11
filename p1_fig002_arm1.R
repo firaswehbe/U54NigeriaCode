@@ -15,7 +15,7 @@ png('output/fig001_arm1.png',width =800,height = 900, res=150)
 plot(mycumdata$enr_enroll_dasPOSIXct,cumsum(mycumdata$count),
      type = 's', lty = 1, lwd = 4, col = '#7a97b7', ann = FALSE, bty = 'L',
      xlim = c(as.POSIXct('2018-06-01'),as.POSIXct(Sys.Date()+7)), xaxs = 'i',
-     ylim = c(0,50), yaxs = 'i'
+     ylim = c(0,100), yaxs = 'i'
 )
 #abline(h=seq(0,10,100),lty=1,lwd=1)
 #abline(h=seq(0,2000,50),lty=2,lwd=0.5)
