@@ -6,6 +6,7 @@ arm_num,unique_event_name,form
 1,visit_arm_1,laboratory_testing_results
 1,visit_arm_1,visit_hcc
 1,outcome_arm_1,outcome
+1,outcome_arm_1,subject_exclusion_form
 2,enrollment_arm_2,enrollment
 2,enrollment_arm_2,hiv_diagnosis
 2,visit_arm_2,visit
@@ -14,3 +15,4 @@ arm_num,unique_event_name,form
 2,hcc_diagnosis_arm_2,hcc_diagnosis
 2,hcc_diagnosis_arm_2,visit_hcc
 2,study_end_arm_2,outcome
+2,study_end_arm_2,subject_exclusion_form
