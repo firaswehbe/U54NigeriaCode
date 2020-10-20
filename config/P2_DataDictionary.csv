@@ -153,6 +153,8 @@ final_withdraw_y,outcome,,radio,"Did the patient withdraw their consent from the
 final_withdraw_d,outcome,,text,"Date consent withdrawn",,,date_ymd,,,,"[final_withdraw_y] = '1'",,,,,,
 final_withdraw_reason,outcome,,text,"Reason for consent withdrawal",,,,,,,"[final_withdraw_y] = '1'",,,,,,
 record_specimen,outcome,,yesno,"<div class=""rich-text-field-label""><p>Does this subject have an entry in specimen collection tracking REDCap database?</p></div>",,,,,,,,y,RH,,,,
+note,outcome,,descriptive,"If No, Please fill the Subject Exclusion form",,,,,,,"[record_specimen] = '0'",,,,,,
+record_specimen_n,outcome,,text,"If No, Please specify the reason",,,,,,,"[record_specimen] = '0'",,,,,,
 exc_1,subject_exclusion_form,"<div class=""rich-text-field-label""><p style=""caret-color: #000000; text-size-adjust: auto;"">Please use this form only for enrolled subjects who become ineligible and need to be excluded from the study.</p> <p style=""caret-color: #000000; text-size-adjust: auto;"">Do any of the following exclusion criteria apply to the subject?</p></div>",yesno,"<div class=""rich-text-field-label""><p>Did the subject refuse to give sample (blood/tissue)?</p></div>",,,,,,,,,RH,,,,
 exc_2,subject_exclusion_form,,yesno,"<div class=""rich-text-field-label""><p>Did the biopsy test result contradict initial diagnosis/inclusion criteria for enrollment that result in exclusion of the subject from the study?</p></div>",,,,,,,,,RH,,,,
 exc_3,subject_exclusion_form,,yesno,"<div class=""rich-text-field-label""><p>Are there issues with collected samples <span style=""font-size: 14px;"">that result in exclusion of the subject from the study?</span></p></div>",,,,,,,,,RH,,,,
