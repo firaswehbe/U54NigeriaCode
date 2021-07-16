@@ -2,7 +2,8 @@
 record_id,enrollment,,text,"Unique Subject Code",,"LU### or JU###",,,,,,,,,,,
 enr_hospital_id,enrollment,,text,"Hospital ID",,,,,,y,,y,,,,,
 enr_pepid,enrollment,,text,PEPID,,,,,,y,,y,,,,,
-enr_otherid,enrollment,,text,"Other ID",,,,,,y,,,,,,,
+enr_otherid,enrollment,,text,"Other ID",,,,,,y,,y,,,,,
+enr_tumor_regid,enrollment,,text,"Tumor Registry ID",,,,,,y,,,,,,,
 enr_site,enrollment,,radio,Site,"1, JUTH | 2, LUTH",,,,,,,y,RH,,,," @DEFAULT='1'"
 enr_enroll_d,enrollment,,text,"Date of Enrollment",,,date_ymd,2018-01-01,,,,y,,,,,
 enr_text_hiv,enrollment,,descriptive,"If the patient has an HIV diagnosis, please make sure that the HIV diagnosis questions are filled (once and updated as needed)",,,,,,,,,,,,,
@@ -107,9 +108,7 @@ icc_n_lymph_node,icc_diagnosis,,radio,"N - Regional Lymph Nodes","0, N0 - No reg
 icc_diag_metastasis,icc_diagnosis,,radio,"M - Distant Metastasis","0, M0 - No distant metastasis | 1, M1 - Distant metastasis | 2, MX - Distant metastasis cannot be assessed",,,,,,,,,,,,
 icc_diag_tumor_size_y,icc_diagnosis,"Tumor Characteristics",radio,"Tumor Size","1, Assessed | 2, Not Assessed",,,,,,,,RH,,,,
 icc_diag_tumor_size,icc_diagnosis,,text,"Tumor size (in centimeters)",,"in centimeters",number,,,,"[icc_diag_tumor_size_y] = '1'",,,,,,
-warning,icc_diagnosis,,descriptive,"You entered Tumor size >10 centimeters, Are you sure it is correct?","1, Squamous Cell Carcinoma
-2, Adenocarcinoma
-99, Other",,,,,,"[icc_diag_tumor_size] > 10",,,,,,
+warning,icc_diagnosis,,descriptive,"You entered Tumor size >10 centimeters, Are you sure it is correct?",,,,,,,"[icc_diag_tumor_size] > 10",,,,,,
 icc_diag_histopath_typ,icc_diagnosis,,radio,"Histopathological type of ICC","1, Squamous Cell Carcinoma | 2, Adenocarcinoma | 99, Other",,,,,,,,,,,,
 icc_diag_histopath_typ_oth,icc_diagnosis,,text,"If Other, Please specify",,,,,,,"[icc_diag_histopath_typ] = '99'",,,,,,
 icc_diag_tumor_grade,icc_diagnosis,,radio,"Tumor Grade  ","1, Well-differentiated | 2, Moderately differentiated | 3, Poorly differentiated",,,,,,,,,,,,
@@ -141,6 +140,10 @@ visit_biopsy_result,visit,,radio,"Biopsy results","1, CIN 1 | 2, CIN 2 | 3, CIN 
 visit_icc_y,visit,"Dysplasia and ICC status",radio,"Does the patient have ICC or CIN 2+ at time of visit?","1, Yes | 0, No","This question is repeated in every visit form",,,,y,,y,RH,,,,
 visit_icc_text,visit,,descriptive,"If the patient has ICC  diagnosis, please also fill out  ICC diagnosis form.",,,,,,,"[visit_icc_y] = '1'",,,,,,
 visit_dur_enr_diag,visit,,calc,"If patient has an ICC or CIN2+ diagnosis at follow up, calculate total time from enrollment to ICC diagnosis.","datediff([icc_diag_d], [enr_enroll_d], ""d"", ""ymd"")",days,,,,,,,RH,,,,
+fup_d,survival_status_followup,"<div class=""rich-text-field-label""><p><strong><u>HIV+/CACX+ or HIV-/CACX+</u></strong>: Fill this form every 4 weeks.</p> <p><strong><u>HIV+/Cervical dysplasia</u>: Fill this form every 4 weeks.</strong></p> <p> </p></div>",text,"Date of follow-up/check-in",,,date_ymd,,,,,,,,,,
+fup_method,survival_status_followup,,radio,"Method of contact","1, Phone - spoke with Patient | 2, Phone - spoke with Patient's relative | 3, Text | 4, In person visit",,,,,,,,,,,,
+fup_notes,survival_status_followup,,notes,Notes,,,,,,,,,,,,,
+fup_due_d,survival_status_followup,,text,"Due date for next follow-up/check-in",,,date_ymd,,,,,,,,,,
 outcome_text,outcome,,descriptive,"This form is filled only for patients under the following aims, at the <u>end of the study</u>.Aim 2Aim 3",,,,,,,,,,,,,
 final_completed_d,outcome,,text,"Please enter the date this form was completed",,,date_ymd,,,,,,,,,,
 outcome_tmt,outcome,,radio,"What type of treatment did the patient receive? ","1, No treatment | 2, Palliative care with antibiotics, pain killers and other non-specific treatment | 3, Chemotherapy only | 4, Chemotherapy and Radiotherapy | 5, Hysterectomy and Chemotherapy | 6, Hysterectomy, Chemotherapy and Radiotherapy | 99, Other treatment",,,,,,,,,,,,
