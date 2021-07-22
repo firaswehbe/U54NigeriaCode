@@ -1,14 +1,15 @@
-"Variable / Field Name","Form Name","Section Header","Field Type","Field Label","Choices, Calculations, OR Slider Labels","Field Note","Text Validation Type OR Show Slider Number","Text Validation Min","Text Validation Max",Identifier?,"Branching Logic (Show field only if...)","Required Field?","Custom Alignment","Question Number (surveys only)","Matrix Group Name","Matrix Ranking?","Field Annotation"
+﻿"Variable / Field Name","Form Name","Section Header","Field Type","Field Label","Choices, Calculations, OR Slider Labels","Field Note","Text Validation Type OR Show Slider Number","Text Validation Min","Text Validation Max",Identifier?,"Branching Logic (Show field only if...)","Required Field?","Custom Alignment","Question Number (surveys only)","Matrix Group Name","Matrix Ranking?","Field Annotation"
 record_id,enrollment,,text,"Unique Subject Code",,"LU### or JU###",,,,,,,,,,,
 enr_hospital_id,enrollment,,text,"Hospital ID",,,,,,y,,y,,,,,
 enr_pepid,enrollment,,text,PEPID,,,,,,y,,y,,,,,
 enr_otherid,enrollment,,text,"Other ID",,,,,,y,,,,,,,
 enr_site,enrollment,,radio,Site,"1, JUTH | 2, LUTH",,,,,,,y,RH,,,," @DEFAULT='1'"
 enr_enroll_d,enrollment,,text,"Date of Enrollment",,,date_ymd,2018-01-01,,,,y,,,,,
-enr_hiv_serology_y,enrollment,Serology,radio,"Is the patient HIV positive","1, Yes | 0, NO","This question is repeated in every visit form",,,,,,y,RH,,,,
+enr_hiv_serology_y,enrollment,"Cohort Defining Variables",radio,"Is the patient HIV positive","1, Yes | 0, NO","This question is repeated in every visit form",,,,,,y,RH,,,,
 enr_text_hiv,enrollment,,descriptive,"If the patient has an HIV diagnosis, please make sure that the HIV diagnosis questions are filled (once and updated as needed)",,,,,,,"[enr_hiv_serology_y] = '1'",,,,,,
 enr_hcc_serology_y,enrollment,,radio,"Does the patient have HCC","1, Yes | 0, No","This question is repeated in every visit form",,,,y,,y,RH,,,,
 enr_text_hcc,enrollment,,descriptive,"If the patient has an HCC diagnosis, please make sure that the HCC diagnosis questions are filled (once and updated as needed)",,,,,,,"[enr_hcc_serology_y] = '1'",,,,,,
+enr_fibrosis_y,enrollment,,yesno,"HIV Fibrosis",,,,,,,,y,RH,,,,
 enr_dob_d,enrollment,Demographics,text,"Date of Birth",,"If exact DOB is unknown, just enter the year and January 1st. (yyyy-mm-dd)",date_ymd,,,,,y,,,,,
 enr_age,enrollment,,calc,"Age in years at enrollment (calculated)","rounddown(datediff([enr_dob_d],[enr_enroll_d],""y""),0)","This field is calculated no need to enter",,,,,,,,,,,
 enr_gender,enrollment,,radio,Sex,"1, Female | 2, Male",,,,,,,y,RH,,,,
@@ -93,11 +94,8 @@ hcc_pvthrombosis_y,hcc_diagnosis,,radio,"Portal Vein thrombosis?","1, Yes | 0, N
 hcc_ct_oth,hcc_diagnosis,,text,"CT Findings Other",,,,,,,,,,,,,
 hcc_livbiop_text,hcc_diagnosis,"Liver Biopsy",notes,"Liver biopsy results",,,,,,,,,RH,,,,
 hcc_bclc,hcc_diagnosis,"Staging at Diagnosis",radio,"BCLC Stage","0, Stage 0 means the tumour is less than 2 cm, the person feels well (PS 0) and the liver is working normally (Child-Pugh A) | 1, Stage A means there is a single tumour less than 5 cm, or up to 3 tumours all less than 3cm. The person feels well and is active (PS 0) and the liver is working well (Child-Pugh A or B) | 2, Stage B means there are many tumours in the liver, but the person feels well (PS 0) and the liver is working well (Child-Pugh A or B) | 3, Stage C means the cancer has spread into the blood vessels, lymph nodes or other body organs. Or the person does not feel well (PS 1 or 2). The liver is still working (Child-Pugh A or B) | 4, Stage D means there is severe liver damage (Child-Pugh C) or the person is not well and needs help in being looked after (PS 3 or 4)",,,,,,,,LV,,,,
-visit_intro_text,visit,,descriptive,"Please fill this form once at enrollment and then at every subsequent visit.
-
-If this is filled as part of Aim 1 -- Only one visit
-If this is filled as part of Aim 2 -- Multiple visits
-If this is filled as part of Aim 3 -- Multiple visits",,,,,,,,,,,,,
+visit_intro_text,visit,,descriptive,"Please fill this form once at enrollment and then at every subsequent visit (See schema).
+",,,,,,,,,,,,,
 visit_d,visit,,text,"Visit date",,,date_ymd,2018-01-01,,,,y,,,,,
 visit_hiv_y,visit,,radio,"Is the patient HIV positive at time of Visit ","1, Yes | 0, No","This question is repeated in every visit form",,,,,,y,RH,,,,
 visit_hiv_text,visit,,descriptive,"If the patient has an HIV diagnosis, please make sure that the HIV diagnosis and visit questions are filled",,,,,,,"[visit_hiv_y] = '1'",,,,,,
@@ -233,7 +231,9 @@ visit_ex_liver_pvthrom_y,visit,,radio,"Portal vein thrombosis?","1, Yes | 0, No 
 visit_ex_liver_sbp_y,visit,,radio,SBP?,"1, Yes | 0, No | 2, Unknown",,,,,,,,RH,,,,
 visit_ex_liver_ruptn_y,visit,,radio,"Ruptured nodule?","1, Yes | 0, No | 2, Unknown",,,,,,,,RH,,,,
 visit_inv_fibro,visit,"Other investigations",text,"Fibroscan score:",,"number (kPA)",number,,,,,,RH,,,,
-visit_inv_image_text,visit,,notes,"Other imaging results:",,,,,,,,,RH,,,,
+visit_fibro_notdone,visit,,radio,"Was Fibroscan not done?","1, Not Done",,,,,,,,,,,,
+visit_apri_score,visit,,text,"APRI score (AST to Platelet Ratio Index) ",,,,,,,"[visit_fibro_notdone] = '1'",,,,,,
+visit_inv_image_text,visit,,notes,"Other imaging results/Comments:",,,,,,,,,RH,,,,
 visit_lab_text,visit,"Laboratory Testing",descriptive,"Please indicate below whether the following labs were taken during this visit",,,,,,,,,,,,,
 visit_lab_hbvcombo_y,visit,,radio,"HBV combo","1, Taken | 0, Not taken",,,,,,,,RH,,,,
 visit_lab_hbeag_y,visit,,radio,"HBeAg (HBsAg positives)","1, Taken | 0, Not taken",,,,,,,,RH,,,,
@@ -273,10 +273,12 @@ visit_lab_albumin_res,laboratory_testing_results,,text,Albumin,,"1.0-10.5 g/l",n
 visit_lab_tot_bil_res,laboratory_testing_results,,text,"Total Bilrubin",,"0-10 mg/dl",number,0,10,,,,,,,,
 visit_lab_tot_pro_res,laboratory_testing_results,,text,"Total Protein",,"0-25.0 g/dl",number,0,25,,,,,,,,
 visit_lab_afp_res,laboratory_testing_results,AFP,text,AFP,,"0-1000 ng/ml",number,0,1000,,,,,,,,
-visit_hiv_intro,visit_hiv,,descriptive,"Please fill this form during every visit (First baseline visit and then during every follow up visit) for Aim 3 patients only.",,,,,,,,,,,,,
-visit_hiv_livbiop_text,visit_hiv,,notes,"Liver biopsy results",,,,,,,,,RH,,,,
-visit_hiv_us,visit_hiv,,checkbox,"Liver Ultrasound Findings","0, Liver lesion | 1, Cirrhosis | 2, Steatosis | 3, Ascites | 4, Splenomegaly | 5, HCC | 6, PVT - Portal Vein Thrombosis | 99, Other please specify",,,,,,,,,,,,
+visit_hiv_type,visit_hiv,,radio,"Type of follow-up visit","1, 6 Months | 2, 12 Months | 3, 18 Months | 4, 24 Months | 5, 30 Months | 6, 36 Months",,,,,,,y,,,,,
+visit_hiv_d,visit_hiv,,text,"HIV follow-up visit date",,,date_ymd,,,,,,,,,,
+visit_hiv_us,visit_hiv,"<div class=""rich-text-field-label""><p><br /><span style=""font-weight: normal;"">Fill the ""</span>Ultrasound Findings"" field only<span style=""font-weight: normal;""> in this form </span><span style=""font-weight: normal;"">at </span><em>6 ,12,18, 24, 30, 36 months</em><span style=""font-weight: normal;""> follow-up visits.</span></p></div>",checkbox,"Liver Ultrasound Findings","0, Liver lesion | 1, Cirrhosis | 2, Steatosis | 3, Ascites | 4, Splenomegaly | 5, HCC | 6, PVT - Portal Vein Thrombosis | 99, Other please specify",,,,,,,,,,,,
 visit_hiv_us_oth,visit_hiv,,text,"Ultrasound Other",,,,,,,"[visit_hiv_us(99)] = '1'",,,,,,
+visit_hiv_livbiop_text,visit_hiv,"
+Fill the Liver biopsy and CT Findings at 12, 24, 36 months follow-up visits.",notes,"Liver biopsy results",,,,,,,,,RH,,,,
 visit_hiv_ct_cirr_y,visit_hiv,"CT FIndings",radio,Cirrhosis?,"1, Yes | 0, No | 2, Unknown",,,,,,,,RH,,,,
 visit_hiv_ct_stea_y,visit_hiv,,radio,Steatosis?,"1, Yes | 0, No | 2, Unknown",,,,,,,,RH,,,,
 visit_hiv_ct_asc_y,visit_hiv,,radio,Ascites?,"1, Yes | 0, No | 2, Unknown",,,,,,,,RH,,,,
@@ -308,9 +310,12 @@ visit_hcc_child_pugh,visit_hcc,"HCC Scores",text,"Child-Pugh Score
 visit_hcc_meld,visit_hcc,,text,"MELD Score
 
 <a target=""_blank"" href=""http://www.mayoclinic.org/meld/mayomodel6.html"">http://www.mayoclinic.org/meld/mayomodel6.html</a>",,"Enter as integer 0-20",integer,0,20,,,,LV,,,,
-outcome_text,outcome,,descriptive,"This form is filled only for patients under the following aims, at the <u>end of the study</u>.
-Aim 2
-Aim 3",,,,,,,,,,,,,
+fup_d,survival_status_followup,"<div class=""rich-text-field-label""><p><strong><u>HIV+/HCC+ or HIV-/HCC+</u></strong>: Fill this form every 4 weeks.</p> <p><strong><u>HIV+/Fibrosis</u> : Fill this form at 12, 24, 36 Months followup visit.</strong></p> <p> </p></div>",text,"Date of follow-up/check-in",,,date_ymd,,,,,,,,,,
+fup_method,survival_status_followup,,radio,"Method of contact","1, Phone - spoke with Patient | 2, Phone - spoke with Patient's relative | 3, Text | 4, In person visit",,,,,,,,,,,,
+fup_notes,survival_status_followup,,notes,Notes,,,,,,,,,,,,,
+fup_due_d,survival_status_followup,,text,"Due date for next follow-up/check-in",,,date_ymd,,,,,,,,,,
+outcome_text,outcome,,descriptive,"Please fill this form for all participants, when the participant dies or at the <u>end of the study</u> for those who are alive.
+",,,,,,,,,,,,,
 final_completed_d,outcome,,text,"Please enter the date this form was completed",,,date_ymd,,,,,,,,,,
 final_withdraw_y,outcome,,radio,"Did the patient withdraw their consent from the study?","1, Yes | 0, No",,,,,,,,RH,,,,
 final_withdraw_d,outcome,,text,"If they have withdrawn their consent, what date did they withdraw their consent",,,date_ymd,,,,"[final_withdraw_y] = '1'",,,,,,
@@ -318,3 +323,15 @@ final_death_y,outcome,,radio,"Has the patient died?","1, Yes | 0, No | 2, Unknow
 final_fu_d,outcome,,text,"Date of the last time the patient was known alive",,"For example contact by phone or clinic visit date",date_ymd,2018-01-01,,,"[final_death_y] = '0' or [final_death_y] = '2'",,RH,,,,
 final_death_d,outcome,,text,"Date of death",,,date_ymd,2018-01-01,,,"[final_death_y] = '1'",,RH,,,,
 final_death_causes,outcome,,radio,"Causes of Death","1, Liver related: Hepatic failure (regardless of etiology) | 2, Liver related: Hepatocellular carcinoma in patients with end-stage liver disease | 3, Liver related: Variceal or other bleeding in the presence of end-stage liver disease | 4, Liver related: Assumed medication-related hepatotoxicity resulting in hepatic failure without evidence of other etiologies of hepatic failure | 5, Liver related: Acute hepatic failure after acute bacterial or opportunistic infection in patients with previously known end-stage liver disease | 6, HCC related:Death due to tumor progression | 7, HCC related:Death due to complications of cirrhosis (liver failure, variceal bleeding, hepatorenal syndrome) | 8, HCC related:Death due to treatment complications | 9, HCC related:Death due to infectious complications | 10, Other",,,,,,"[final_death_y] = '1'",,LV,,,,
+record_specimen,outcome,,yesno,"<div class=""rich-text-field-label""><p>Does this subject have an entry in specimen collection and tracking REDCap database?</p></div>",,,,,,,,y,RH,,,,
+note,outcome,,descriptive,"If No, Please fill the Subject Exclusion form",,,,,,,"[record_specimen] = '0'",,,,,,
+record_specimen_n,outcome,,text,"If No, Please specify the reason",,,,,,,"[record_specimen] = '0'",,,,,,
+exc_1,subject_exclusion_form,"<div class=""rich-text-field-label""><p>Please use this form only for enrolled subjects who become ineligible and need to be excluded from the study.</p> <p>Do any of the following exclusion criteria apply to the subject?</p></div>",yesno,"<div class=""rich-text-field-label""><p>Did the subject decline to give blood sample?</p></div>",,,,,,,,,RH,,,,
+exc_2,subject_exclusion_form,,yesno,"<div class=""rich-text-field-label""><p>Incorrect initial diagnoses/ inclusion criteria for enrollment <span style=""font-size: 14px;"">that result in exclusion of the subject from the study?</span></p></div>",,,,,,,,,RH,,,,
+exc_2_reason,subject_exclusion_form,,text,"<div class=""rich-text-field-label""><p><span style=""font-size: 14px;"">Clinician comment</span></p></div>",,,,,,,"[exc_2] = '1'",,RH,,,,
+exc_3,subject_exclusion_form,,yesno,"<div class=""rich-text-field-label""><p>Are there issues with collected blood samples <span style=""font-size: 14px;"">that result in exclusion of the subject from the study?</span></p></div>",,,,,,,,,RH,,,,
+exc_3_reason,subject_exclusion_form,,radio,"<div class=""rich-text-field-label""><p>If there are issues with collected blood samples, Please specify</p></div>","1, Missing | 2, Discarded | 3, Broken vial | 99, Other",,,,,,"[exc_3] = '1'",,,,,,
+exc_3_reason_oth,subject_exclusion_form,,text,"<div class=""rich-text-field-label""><p>If Other, Please specify</p></div>",,,,,,,"[exc_3_reason] = '99'",,,,,,
+exc_4,subject_exclusion_form,,yesno,"<div class=""rich-text-field-label""><p>Is this subject excluded from the study due to reasons other than above?</p></div>",,,,,,,,,RH,,,,
+exc_4_reason,subject_exclusion_form,,text,"<div class=""rich-text-field-label""><p><span style=""font-size: 14px; font-variant-ligatures: normal; orphans: 2; widows: 2;"">If Yes, Please specify the reason why this subject is excluded</span></p></div>",,,,,,,"[exc_4] = '1'",,RH,,,,
+exclude_subject,subject_exclusion_form,,calc,"<div class=""rich-text-field-label""><p>Exclude this subject</p></div>","if (([exc_1] = ""1"") or ([exc_2] = ""1"") or ([exc_3] = ""1"") or ([exc_4] = ""1""), 1, 0)",,,,,,,,RH,,,,

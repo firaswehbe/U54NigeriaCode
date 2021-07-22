@@ -3,9 +3,13 @@ arm_num,unique_event_name,form
 1,enrollment_arm_1,hiv_diagnosis
 1,enrollment_arm_1,icc_diagnosis
 1,enrollment_arm_1,visit
+1,study_end_arm_1,survival_status_followup
 1,study_end_arm_1,outcome
+1,study_end_arm_1,subject_exclusion_form
 2,enrollment_arm_2,enrollment
 2,enrollment_arm_2,hiv_diagnosis
 2,visit_arm_2,visit
 2,icc_diagnosis_arm_2,icc_diagnosis
+2,study_end_arm_2,survival_status_followup
 2,study_end_arm_2,outcome
+2,study_end_arm_2,subject_exclusion_form
